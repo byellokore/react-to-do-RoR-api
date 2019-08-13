@@ -1,0 +1,11 @@
+$yellow: #F4DD15;
+  $dark-grey: #7C7C7B;
+  $light-grey: #BEBEBE;
+  $red: #EE4424;
+
+  .navbar{
+    background-color: $dark-grey;
+    .navbar-brand {
+      color: $yellow !important;
+    }
+  }
