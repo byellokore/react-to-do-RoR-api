@@ -1,11 +1,43 @@
-$yellow: #F4DD15;
+$yellow: rgb(216, 185, 12);
   $dark-grey: #7C7C7B;
   $light-grey: #BEBEBE;
   $red: #EE4424;
+  $green-light: rgba(244, 247, 244, 0.548);
 
   .navbar{
     background-color: $dark-grey;
     .navbar-brand {
       color: $yellow !important;
+    }
+  }
+
+  .tasks_list {
+    margin-top: 40px;
+    .title {
+      font-size: 22px;
+      color: $dark-grey;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .card {
+      background-color: $green-light;
+      table {
+        tbody > tr:nth-child(1) > td {
+          border-top: 0;
+        }
+        color: $yellow;
+        font-weight: 500;
+        margin-bottom: 5px;
+      }
+
+      .check {
+        color: $yellow;
+        font-size: 15px;
+      }
+
+      .delete {
+        color: rgb(192, 114, 114);
+      }
     }
   }

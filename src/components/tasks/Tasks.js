@@ -9,11 +9,11 @@ class Tasks extends Component {
             <Row>
                 <Col xs={{ span: 8, offset: 2 }} className="tasks_list">
                     <p className="title">To-do</p>
-                    <List/>
+                    <List tasks={[{'title': 'Create Portal - Where the cats finish the food', 'done': false }, {'title': 'Remove test  1', 'done': false }]}/>
                 </Col>
                 <Col xs={{ span: 8, offset: 2}} className="tasks_list">
                     <p className="title">Done</p>
-                    <List/>
+                    <List tasks={[{'title': 'Create Header', 'done': true }, {'title': 'Destroy data', 'done': true }]}/>
                 </Col>
             </Row>
         );

@@ -7,7 +7,7 @@ import { faCheckCircle, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import Header from './components/header/Header';
 import Tasks from './components/tasks/Tasks';
 
-library.add(faCheckCircle, faCheckCircle)
+library.add(faCheckCircle, faTrashAlt)
 
 
 class App extends Component {
