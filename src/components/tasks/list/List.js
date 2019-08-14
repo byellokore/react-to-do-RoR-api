@@ -4,6 +4,28 @@ import Table from 'react-bootstrap/Table';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class List extends Component {
+    async deleteTask(task) {
+        if(window.confirm(`Are you sure? "${task.title}" will be deleted!`)) {
+            await fetch(`http://localhost:3001/tasks/${task.id}`, { method: 'DELETE'});
+            this.props.loadTasks();
+        }
+    }
+    async checkTask(task) {
+        await fetch(`http://localhost:3001/tasks/${task.id}`,
+            {
+                method: 'PUT',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    task: { done: true }
+                })
+            }
+        )
+
+        this.props.loadTasks();
+    }
     render(){
         return(
             <div>
@@ -18,14 +40,14 @@ class List extends Component {
                                             {
                                                 task.done == false
                                                 ? <a className="check" href="#">
-                                                    <FontAwesomeIcon icon="check-circle"/>
+                                                    <FontAwesomeIcon icon="check-circle" onClick={() => this.checkTask(task)}/>
                                                 </a>
                                                 : null
                                             }
                                         </td>
                                         <td>
                                             <a className="delete" href="#">
-                                                <FontAwesomeIcon icon="trash-alt"/>
+                                                <FontAwesomeIcon icon="trash-alt" onClick={() => this.deleteTask(task)}/>
                                             </a>    
                                         </td>
                                     </tr>;

@@ -2,18 +2,39 @@ import React, { Component } from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import List from './list/List';
+import CreateTask from './create_tasks/CreateTasks';
+import RemoveAllTasks from './remove_all_tasks/RemoveAllTasks';
 
 class Tasks extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            tasks: []
+        };
+        this.loadTasks = this.loadTasks.bind(this);
+    }
+
+    async loadTasks() {
+        let response = await fetch(`http://localhost:3001/tasks`);
+        const tasks = await response.json();
+        this.setState( { tasks: tasks });
+    }
+
+    componentDidMount(){
+        this.loadTasks();
+    }
     render() {
         return (
             <Row>
                 <Col xs={{ span: 8, offset: 2 }} className="tasks_list">
                     <p className="title">To-do</p>
-                    <List tasks={[{'title': 'Create Portal - Where the cats finish the food', 'done': false }, {'title': 'Remove test  1', 'done': false }]}/>
+                    <List loadTasks={ this.loadTasks }tasks={ this.state.tasks.filter((task) => task.done != true)} />
+                    <CreateTask loadTasks={ this.loadTasks }/>
                 </Col>
                 <Col xs={{ span: 8, offset: 2}} className="tasks_list">
                     <p className="title">Done</p>
-                    <List tasks={[{'title': 'Create Header', 'done': true }, {'title': 'Destroy data', 'done': true }]}/>
+                    <List loadTasks={ this.loadTasks } tasks={ this.state.tasks.filter((task) => task.done == true)} />
+                    <RemoveAllTasks loadTasks={ this.loadTasks } tasks={ this.state.tasks.filter((task) => task.done == true)} />
                 </Col>
             </Row>
         );

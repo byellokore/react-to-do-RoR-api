@@ -20,6 +20,18 @@ $yellow: rgb(216, 185, 12);
       margin-bottom: 4px;
     }
 
+    .create_task_btn {
+      background-color: $dark-grey;
+      border-color: $dark-grey;
+      font-weight: 500;
+      margin-top: 10px;
+    }
+
+    .remove_all_tasks_btn {
+      font-weight: 500;
+      margin-top: 10px;
+    }
+
     .card {
       background-color: $green-light;
       table {
